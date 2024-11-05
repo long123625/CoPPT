@@ -1,0 +1,23 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="SemiCode:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/SemiCode_jar</output-path>
+    <root id="archive" name="SemiCode.jar">
+      <element id="module-output" name="SemiCode" />
+      <element id="extracted-dir" path="/usr/local/spark/jars_old/jena-arq-3.15.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="/usr/local/spark/jars_old/jena-iri-3.15.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="/usr/local/spark/jars_old/jena-tdb-3.15.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="/usr/local/spark/jars_old/jena-base-3.15.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="/usr/local/spark/jars_old/jena-cmds-3.15.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="/usr/local/spark/jars_old/jena-core-3.15.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="/usr/local/spark/jars_old/jena-tdb2-3.15.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="/usr/local/spark/jars_old/jena-shacl-3.15.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="/usr/local/spark/jars_old/jena-dboe-base-3.15.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="/usr/local/spark/jars_old/jena-dboe-index-3.15.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="/usr/local/spark/jars_old/jena-dboe-storage-3.15.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="/usr/local/spark/jars_old/jena-shaded-guava-3.15.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="/usr/local/spark/jars_old/jena-rdfconnection-3.15.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="/usr/local/spark/jars_old/jena-dboe-trans-data-3.15.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="/usr/local/spark/jars_old/jena-dboe-transaction-3.15.0.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
