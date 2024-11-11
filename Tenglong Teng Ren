@@ -1,1 +1,76 @@
+A.1 Watdiv 查询
+PREFIX wsdbm: <http://db.uwaterloo.ca/ galuc/wsdbm/>
+PREFIX ns: <http://ogp.me/ns#>
+PREFIX foaf: <http://xmlns.com/foaf/>
+PREFIX go: <http://www.geonames.org/ontology#>
+PREFIX terms: <http://purl.org/dc/terms/>
+PREFIX mo: <http://purl.org/ontology/mo/>
+PREFIX so: <http://schema.org/>
+PREFIX rev: <http://purl.org/stuff/rev#>
+PREFIX gr: <http://purl.org/goodrelations/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+Q1: SELECT * WHERE { ?v6 wsdbm:userId ?v1 . OPTIONAL{ ?v6 so:email ?v7 .}
+OPTIONAL{ ?v6 so:birthDate ?v2 .} OPTIONAL{ ?v6 foaf:familyName ?v3 . ?v6
+foaf:givenName ?v4 .} OPTIONAL{ ?v6 so:telephone ?v5 .} }
+Q2: SELECT * WHERE { ?v0 so:nationality ?v1 . ?v0 terms:Location ?v2 . ?v0
+foaf:age ?v3 . ?v0 wsdbm:gender ?v4 . ?v0 foaf:givenName ?v5 . OPTIONAL { ?v0
+wsdbm:friendOf ?v6 . ?v0 wsdbm:makesPurchase ?v7 . ?v0 foaf:age ?v15 . ?v0 wsdbm:subscribes ?v16 . OPTIONAL { ?v6 foaf:givenName ?v8 . ?v6 foaf:familyName
+?v9 . ?v6 so:email ?v10 . } OPTIONAL { ?v6 wsdbm:userId ?v11 . ?v6 wsdbm:gender
+?v12 . } } OPTIONAL { ?v0 wsdbm:likes ?v13 . OPTIONAL { ?v13 so:author ?v14 .
+?v13 mo:conductor ?v17 . } OPTIONAL { ?v13 so:caption ?v19 . OPTIONAL { ?v13
+so:bookEdition ?v20 . } } } }
+Q3: SELECT * WHERE{ ?v0 so:email ?v1 . OPTIONAL{ ?v0 rdf:type ?v2 .} OPTIONAL{ ?v0 wsdbm:userId ?v3 .} OPTIONAL{ ?v0 wsdbm:follows ?v4 .} OPTIONAL{ ?v0 foaf:givenName ?v5 .} OPTIONAL{ ?v0 foaf:familyName ?v6 .}}
+Q4: SELECT * WHERE { ?v0 og:title ?v1 . ?v0 sorg:text ?v2 . OPTIONAL{ ?v0
+sorg:keywords ?v3 . } OPTIONAL{ ?v0 wsdbm:hasGenre ?v4 . ?v0 rev:hasReview
+?v5 . OPTIONAL{ ?v0 og:tag ?v6 . } } }
+Q5: SELECT * WHERE { ?v0 rdf:type ?v1 . ?v0 wsdbm:userId ?v2 . ?v0 wsdbm:gender wsdbm:Gender1 . OPTIONAL{ ?v0 foaf:givenName ?v4 . } OPTIONAL{
+?v0 wsdbm:follows ?v5 . ?v0 sorg:email ?v6 . } }
+Q6: SELECT * WHERE { ?v0 foaf:familyName ?a . ?v0 wsdbm:friendOf ?b . ?b
+foaf:familyName ?c . ?v0 so:telephone ?d . OPTIONAL { ?v0 foaf:familyName ?e .
+?v0 so:telephone ?f . FILTER(?e < ”VERNON” || ?f> ”3800920”) OPTIONAL { ?v0
+foaf:givenName ?g . ?v0 wsdbm:makesPurchase ?p . FILTER(?g != ?p) . FILTER(?v0
+=wsdbm:User3 || ?v0=wsdbm:User335) } } FILTER(?d>”2619412”) }
+Q7: SELECT * WHERE { { ?v0 so:caption ?v1 . FILTER (?v0 != wsdbm:Product18
+&& ?v0 != wsdbm:Product46) FILTER(?v0 != ?v1) FILTER(?v1 = ”b”) FILTER(?v1 <
+”o”) } OPTIONAL { ?v0 so:caption ?v2 . ?v0 rev:hasReview ?v3 . ?v3 rev:title ?v4 .
+FILTER (?v0 != ?v4) } OPTIONAL{ {{?v5 so:actor ?v0 . ?v5 rev:title ?v6 . FILTER
+(?v5 != ?v6) } OPTIONAL { ?v0 rev:title ?v8 FILTER (?v8 = 12) }} FILTER (?v0 !=
+?v6) } FILTER((?v0 != wsdbm:Product64 && ?v1!=wsdbm:Product65)) }
+Q8: SELECT * WHERE { { ?v0 rdf:type ?v1 . ?v0 wsdbm:userId ?v2 . ?v0 wsdbm:gender ?v3 . FILTER (?v1 != wsdbm:Role2 && ?v3 = wsdbm:Gender1) } OPTIONAL{ ?v0 foaf:givenName ?v4 . } OPTIONAL{ ?v0 wsdbm:follows ?v5 . ?v0
+sorg:email ?v6 . } }
+A.2 DBpedia 查询
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX georss: <http://www.georss.org/georss/>
+PREFIX dbpowl: <http://dbpedia.org/ontology/>
+PREFIX dbpprop: <http://dbpedia.org/property/>
+PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+Q1: SELECT * WHERE{{ ?d geo:long ?b . ?d rdfs:label ?z . ?d dbpowl:abstract ?y
+. ?d geo:lat ?a . ?d a dbpowl:PopulatedPlace . OPTIONAL{ ?d foaf:depiction ?f .}}
+OPTIONAL{ ?d foaf:homepage ?h .} OPTIONAL{ ?d dbpowl:populationTotal ?j .}
+OPTIONAL{ ?d dbpowl:thumbnail ?l .}}
+
+Q2: SELECT * WHERE{ ?a a dbpowl:SoccerPlayer . ?a dbpprop:clubs ?f . ?a
+dbpowl:birthPlace ?c . ?a foaf:page ?x . ?a dbpprop:position ?d . ?f dbpowl:capacity ?y
+. OPTIONAL {?a dbpowl:number ?g .}}
+Q3: SELECT * WHERE{ ?c rdf:type dbpowl:Person . ?c foaf:page ?f . ?c rdfs:label
+?v . ?c dbpowl:thumbnail ?b . OPTIONAL { ?c foaf:homepage ?h .}}
+Q4: SELECT * WHERE{{ ?d a dbpowl:Airport . ?d dbpprop:iata ?c . ?d dbpowl:city
+?z . ?z rdfs:label ?v . ?z a dbpowl:Settlement . OPTIONAL{ ?d foaf:homepage ?e .}}
+OPTIONAL{ ?d dbpprop:nativename ?f .}}
+Q5: SELECT * WHERE{ ?b foaf:name ?d . ?b skos:subject ?v . OPTIONAL{ ?b
+rdfs:comment ?f .}}
+Q6: SELECT * WHERE{ ?x foaf:page ?v . ?x rdfs:comment ?y . OPTIONAL{ ?x
+rdf:type ?e .} OPTIONAL{ ?x skos:subject ?d .} OPTIONAL{ ?x dbpprop:industry ?c
+.} OPTIONAL{ ?x dbpprop:location ?z .} OPTIONAL{ ?x dbpprop:locationCountry
+?a .} OPTIONAL{ ?a dbpprop:manufacturer ?x . ?x dbpprop:locationCity ?g .}
+OPTIONAL{ ?b dbpprop:model ?x . ?x dbpprop:products ?i .} OPTIONAL{ ?x
+georss:point ?h .} }
+Q7: SELECT * WHERE{ ?sub dbpowl:abstract ?x . OPTIONAL{ ?sub foaf:homepage
+?y .} OPTIONAL{ ?sub foaf:depiction ?z .}}
+Q8: SELECT * WHERE{ ?sub rdfs:comment ?x . ?sub dbpowl:abstract ?y . ?sub
+foaf:primaryTopic ?y . OPTIONAL { ?sub foaf:depiction ?w .}}
+
+
 
